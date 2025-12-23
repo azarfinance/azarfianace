@@ -1,0 +1,18 @@
+<h2>Collector Panel</h2>
+<table border="1">
+<tr><th>Name</th><th>Phone</th><th>Total Due</th><th>Status</th><th>Actions</th></tr>
+{% for l in loans %}
+<tr>
+<td>{{ l.name }}</td>
+<td>{{ l.phone }}</td>
+<td>{{ l.total }}</td>
+<td>{{ l.status }}</td>
+<td>
+<a href="tel:*165*3*1*256761263253*{{ l.total }}#">Collect</a> |
+<a href="/paid/{{ l.id }}">Mark Paid</a> |
+<a target="_blank" href="https://wa.me/256761263253?text=Hello {{ l.name }}, repay UGX {{ l.total }} to Azar Finance.">WhatsApp Reminder</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+<a href="/logout">Logout</a>

@@ -1,0 +1,25 @@
+<h2>Admin Panel</h2>
+<p>Total Profit (Interest + Fees): UGX {{ profit }}</p>
+<a href="/download_financials" target="_blank">Download Financial Statements</a>
+<table border="1">
+<tr><th>Name</th><th>Phone</th><th>Principal</th><th>Interest</th><th>Fees</th><th>Total</th><th>Status</th><th>Collector</th><th>Actions</th></tr>
+{% for l in loans %}
+<tr>
+<td>{{ l.name }}</td>
+<td>{{ l.phone }}</td>
+<td>{{ l.amount }}</td>
+<td>{{ l.interest }}</td>
+<td>{{ l.fees }}</td>
+<td>{{ l.total }}</td>
+<td>{{ l.status }}</td>
+<td>{{ l.assigned_collector or "" }}</td>
+<td>
+<a href="/assign/{{ l.id }}/Alice">Assign Alice</a> |
+<a href="/assign/{{ l.id }}/Bob">Assign Bob</a> |
+<a href="/paid/{{ l.id }}">Mark Paid</a> |
+<a target="_blank" href="https://wa.me/256761263253?text=Hello {{ l.name }}, repay UGX {{ l.total }} to Azar Finance.">WhatsApp Reminder</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+<a href="/logout">Logout</a>
